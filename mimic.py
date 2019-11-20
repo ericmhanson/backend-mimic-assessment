@@ -49,11 +49,25 @@ import sys
 
 def mimic_dict(filename):
     """Returns mimic dict mapping each word to list of words which follow it."""
-    # +++your code here+++
+    
+    word_list = {}
+    hold = ''
+    text = open(filename, 'r')
+    text_string = text.read().lower()
+
+    for word in text_string.split():
+        if hold not in word_list:
+            word_list[hold] = [word]
+        else:
+            word_list[hold].append(word)
+        hold = word
+
+    return word_list
+
     raise NotImplementedError("Get to Work!")
 
 
-def print_mimic(mimic_dict, word):
+def print_mimic(post_dict, word):
     """Given mimic dict and start word, prints 200 random words:
         - Start with '' (empty string) as a seed word.
         - Print the seed word
@@ -61,7 +75,13 @@ def print_mimic(mimic_dict, word):
         - Randomly select a new seed word from this word list
         - Repeat this process 200 times
     """
-    # +++your code here+++
+    
+    for i in range(200):
+        list_hold = post_dict[word]
+        print(word)
+        rand_word = random.randint(0, len(list_hold) - 1)
+        word = list_hold[rand_word]
+
     raise NotImplementedError("Get to Work!")
 
 
